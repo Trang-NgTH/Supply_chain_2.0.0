@@ -1,0 +1,287 @@
+﻿<UserControl x:Class="Olwen_2._0._0.View.Pages.PageLogistic"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Olwen_2._0._0.View.Pages"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             DataContext="{Binding Log, Source={StaticResource Locator}}"
+             MinWidth="825"
+             Background="#F5F5F5">
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <materialDesign:DialogHost CloseOnClickAway="True"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Center"
+                               Identifier="hostid">
+
+            <Grid>
+
+                <StackPanel Grid.Column="0">
+
+                    <TextBlock FontSize="17"
+                               FontWeight="DemiBold"
+                               Margin="20"
+                               Text="List Logictis" />
+
+                    <StackPanel Margin="10 0"
+                                Height="640">
+
+                        <Border Width="560"
+                                Height="60">
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Border Background="White"
+                                        CornerRadius="30"
+                                        Grid.Column="0">
+
+                                    <Grid>
+
+                                        <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                 Margin="20 0 0 0"
+                                                                 Width="30"
+                                                                 Height="30"
+                                                                 Kind="Search"
+                                                                 Foreground="#FF7F7575" />
+
+                                        <TextBox Text="{Binding SeaKey1,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                 VerticalContentAlignment="Center"
+                                                 materialDesign:HintAssist.Hint="Searching By Keyword...."
+                                                 Margin="70 0 30 0" />
+                                    </Grid>
+
+                                </Border>
+
+
+                                <Grid Grid.Column="1">
+
+                                    <ComboBox Background="White"
+                                              Width="130"
+                                              Margin="10 0 0 0"
+                                              HorizontalAlignment="Left"
+                                              materialDesign:HintAssist.Hint="KeyWord"
+                                              MinWidth="72"
+                                              SelectedItem="{Binding SKey1,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                              ItemsSource="{Binding ListKey1,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+
+                                        <ComboBox.ItemContainerStyle>
+                                            <Style TargetType="{x:Type ComboBoxItem}">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                                            <Border x:Name="Bd"
+                                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                                    Background="{TemplateBinding Background}">
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                                                    <Label Content="{Binding Title}"
+                                                                           Width="100" />
+                                                                    <Label Content="{Binding BranchName}" />
+                                                                </StackPanel>
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsHighlighted"
+                                                                         Value="True">
+                                                                    <Setter TargetName="Bd"
+                                                                            Property="Background"
+                                                                            Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                                                                    <Setter Property="Foreground"
+                                                                            Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsEnabled"
+                                                                         Value="False">
+                                                                    <Setter Property="Foreground"
+                                                                            Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ComboBox.ItemContainerStyle>
+                                    </ComboBox>
+
+                                </Grid>
+
+                            </Grid>
+                        </Border>
+
+                        <Border  Margin="0 20 0 0"
+                                 VerticalAlignment="Top"
+                                 BorderThickness="0.25"
+                                 Height="50"
+                                 BorderBrush="#FFCDC3C3">
+
+                            <StackPanel Background="White"
+                                        Orientation="Horizontal">
+                                <TextBlock FontWeight="DemiBold"
+                                           FontSize="13"
+                                           Margin="20 0 0 0"
+                                           VerticalAlignment="Center"
+                                           Text="LogID" />
+
+                                <TextBlock FontSize="13"
+                                           FontWeight="DemiBold"
+                                           Margin="170 0 0 0"
+                                           VerticalAlignment="Center"
+                                           Text="Name" />
+                                <TextBlock FontSize="13"
+                                           FontWeight="DemiBold"
+                                           Text="Fee"
+                                           VerticalAlignment="Center"
+                                           Margin="170 0 0 0" />
+
+
+                                <Button Command="{Binding AddCommand}"
+                                        Width="70"
+                                        Height="30"
+                                        Foreground="White"
+                                        Padding="0"
+                                        Content="Add"
+                                        FontSize="13"
+                                        Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                                        Margin="150 0 0 0"
+                                        BorderBrush="{x:Null}">
+                                    
+                                    <Button.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1"
+                                                             StartPoint="0.5,0">
+                                            <GradientStop Color="#FF80F05D"
+                                                          Offset="0" />
+                                            <GradientStop Color="#FF22D672"
+                                                          Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+
+                                </Button>
+
+                            </StackPanel>
+
+
+                        </Border>
+
+
+
+                    
+                        <ListView   Height="500"
+                                x:Name="lvLog"
+                                    ItemContainerStyle="{StaticResource ListViewContainerStyle}"
+                                    ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                    ItemsSource="{Binding ListLog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    SelectedItem="{Binding ProCateSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+
+
+                            <ListView.ItemTemplate>
+
+                                <DataTemplate>
+
+                                    <Border Width="800"
+                                            x:Name="Border"
+                                            BorderBrush="#FFC8C8C8"
+                                            BorderThickness="0.6"
+                                            Background="White"
+                                            Height="50"
+                                            HorizontalAlignment="Left">
+                                        <Grid>
+
+                                            <TextBlock VerticalAlignment="Center"
+                                                       Text="{Binding LogID,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                       HorizontalAlignment="Left"
+                                                       Margin="20 0 0 0" />
+
+                                            <TextBlock VerticalAlignment="Center"
+                                                   Text="{Binding Name,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                   HorizontalAlignment="Center"
+                                                       Margin="0 0 380 0" />
+
+                                            <TextBlock VerticalAlignment="Center"
+                                                   Text="{Binding Fee,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                   HorizontalAlignment="Center"
+                                                       Margin="20 0 0 0" />
+
+                                            <Button Command="{Binding ElementName=lvLog,Path=DataContext.UpdateCommand}"
+                                                CommandParameter="{Binding LogID,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                    BorderBrush="{x:Null}"
+                                                    BorderThickness="0"
+                                                    Background="#007BFF"
+                                                    Content="Update"
+                                                    HorizontalAlignment="Right"
+                                                    Padding="0"
+                                                    Margin="0 0 180 0"
+                                                    Foreground="White"
+                                                    FontSize="13"
+                                                    Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                                                    Width="80"
+                                                    Height="30" />
+
+                                            <Button Command="{Binding ElementName=lvLog,Path=DataContext.DeleteCommand}"
+                                                CommandParameter="{Binding LogID,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                    BorderBrush="{x:Null}"
+                                                    BorderThickness="0"
+                                                    Background="#DC3545"
+                                                    HorizontalAlignment="Right"
+                                                    Margin="0 0 70 0"
+                                                    Content="Delete"
+                                                    Padding="0"
+                                                    Foreground="White"
+                                                    FontSize="13"
+                                                    Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                                                    Width="80"
+                                                    Height="30" />
+
+                                        </Grid>
+                                    </Border>
+
+
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor,   
+                                    AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                     Value="True">
+                                            <Setter TargetName="Border"
+                                                    Property="Background"
+                                                    Value="#F2F2F2"></Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor,   
+                                    AncestorType={x:Type ListViewItem}}, Path=IsMouseOver}"
+                                                     Value="True">
+                                            <Setter TargetName="Border"
+                                                    Property="Background"
+                                                    Value="#F2F2F2"></Setter>
+
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+
+                                </DataTemplate>
+
+                            </ListView.ItemTemplate>
+
+
+
+                        </ListView>
+
+                    </StackPanel>
+
+
+                </StackPanel>
+
+               
+            </Grid>
+
+    </materialDesign:DialogHost>
+</UserControl>

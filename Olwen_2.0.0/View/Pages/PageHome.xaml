@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="Olwen_2._0._0.View.Pages.PageHome"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Olwen_2._0._0.View.Pages"
+             Background="White"
+             
+             mc:Ignorable="d" >
+    <Grid VerticalAlignment="Top"
+        Margin="0 40 0 0">
+        <TextBlock FontSize="62"
+                   HorizontalAlignment="Center"
+                   FontWeight="DemiBold"
+                   Foreground="#0DBFEF"
+                   Text="Olwen" />
+        <Grid Margin="0 100 0 0">
+            <Image Margin="20"
+                   Source="../Images/bg3.png" />
+            
+            <TextBlock HorizontalAlignment="Center"
+                       FontSize="32"
+                       Text="supply chain management for coffee shops" />
+
+        </Grid>
+    </Grid>
+</UserControl>

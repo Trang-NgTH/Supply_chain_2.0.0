@@ -1,0 +1,1321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OlwenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="NameLogin" />
+          </Key>
+          <Property Name="NameLogin" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="PassWord" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="char" MaxLength="14" />
+          <Property Name="Role" Type="int" />
+          <Property Name="Sex" Type="bit" />
+          <Property Name="EmpID" Type="int" />
+          <Property Name="Avatar" Type="image" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CusID" />
+          </Key>
+          <Property Name="CusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="char" MaxLength="14" />
+          <Property Name="Sex" Type="bit" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Kind" Type="int" />
+          <Property Name="Avatar" Type="image" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmpID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="char" MaxLength="14" />
+          <Property Name="Mission" Type="nvarchar(max)" />
+          <Property Name="Salary" Type="money" />
+          <Property Name="Sex" Type="bit" />
+          <Property Name="Avatar" Type="image" />
+        </EntityType>
+        <EntityType Name="Logistics">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="LogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fee" Type="money" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="OrderDetailId" />
+          </Key>
+          <Property Name="ProductId" Type="int" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="OrderDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderQty" Type="int" />
+          <Property Name="UnitPrice" Type="money" />
+          <Property Name="StoreID" Type="int" />
+        </EntityType>
+        <EntityType Name="OrderHeader">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CusID" Type="int" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="EmpId" Type="int" />
+          <Property Name="LogId" Type="int" />
+          <Property Name="Discount" Type="int" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="UnitPrice" Type="money" />
+          <Property Name="UnitOnOrder" Type="money" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Picture" Type="image" />
+          <Property Name="CategoryID" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductCategories">
+          <Key>
+            <PropertyRef Name="CatelogyID" />
+          </Key>
+          <Property Name="CatelogyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Picture" Type="image" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PurchasingDetail">
+          <Key>
+            <PropertyRef Name="PurId" />
+            <PropertyRef Name="PurDetailId" />
+          </Key>
+          <Property Name="ProductId" Type="int" />
+          <Property Name="PurId" Type="int" Nullable="false" />
+          <Property Name="PurDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PurQty" Type="int" />
+          <Property Name="UnitPrice" Type="money" />
+          <Property Name="StoreID" Type="int" />
+        </EntityType>
+        <EntityType Name="PurchasingHeader">
+          <Key>
+            <PropertyRef Name="PurID" />
+          </Key>
+          <Property Name="PurID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SuplierID" Type="int" />
+          <Property Name="PurDate" Type="date" />
+          <Property Name="LogID" Type="int" />
+          <Property Name="EmpID" Type="int" />
+        </EntityType>
+        <EntityType Name="SalaryInfo">
+          <Key>
+            <PropertyRef Name="EmpID" />
+            <PropertyRef Name="Num" />
+          </Key>
+          <Property Name="EmpID" Type="int" Nullable="false" />
+          <Property Name="DateSalary" Type="datetime" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="SalaryPay" Type="money" />
+          <Property Name="Num" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="StoreID" />
+          </Key>
+          <Property Name="StoreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="EmpID_Control" Type="int" />
+        </EntityType>
+        <EntityType Name="StoreDetail">
+          <Key>
+            <PropertyRef Name="StoreID" />
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="StoreID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="SupID" />
+          </Key>
+          <Property Name="SupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="char" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Delegate" Type="nvarchar" MaxLength="50" />
+          <Property Name="Avatar" Type="image" />
+        </EntityType>
+        <Association Name="FK_CategoryID_Product">
+          <End Role="ProductCategories" Type="Self.ProductCategories" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategories">
+              <PropertyRef Name="CatelogyID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CusID_Order">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="OrderHeader" Type="Self.OrderHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CusID" />
+            </Principal>
+            <Dependent Role="OrderHeader">
+              <PropertyRef Name="CusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpID">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SalaryInfo" Type="Self.SalaryInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="SalaryInfo">
+              <PropertyRef Name="EmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpID_Acc">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="EmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpId_OH">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="OrderHeader" Type="Self.OrderHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="OrderHeader">
+              <PropertyRef Name="EmpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpId_P">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="PurchasingHeader" Type="Self.PurchasingHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="PurchasingHeader">
+              <PropertyRef Name="EmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpID_Store">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Store" Type="Self.Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="Store">
+              <PropertyRef Name="EmpID_Control" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LogId_OH">
+          <End Role="Logistics" Type="Self.Logistics" Multiplicity="0..1" />
+          <End Role="OrderHeader" Type="Self.OrderHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Logistics">
+              <PropertyRef Name="LogID" />
+            </Principal>
+            <Dependent Role="OrderHeader">
+              <PropertyRef Name="LogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LogId_PH">
+          <End Role="Logistics" Type="Self.Logistics" Multiplicity="0..1" />
+          <End Role="PurchasingHeader" Type="Self.PurchasingHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Logistics">
+              <PropertyRef Name="LogID" />
+            </Principal>
+            <Dependent Role="PurchasingHeader">
+              <PropertyRef Name="LogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderId_OD">
+          <End Role="OrderHeader" Type="Self.OrderHeader" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderHeader">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProId_OD">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProId_PurchasingDetail">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="PurchasingDetail" Type="Self.PurchasingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="PurchasingDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProID_StoreDetail">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="StoreDetail" Type="Self.StoreDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="StoreDetail">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchasingDetail_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+          <End Role="PurchasingDetail" Type="Self.PurchasingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="PurchasingDetail">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurId_PurchasingDetail">
+          <End Role="PurchasingHeader" Type="Self.PurchasingHeader" Multiplicity="1" />
+          <End Role="PurchasingDetail" Type="Self.PurchasingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchasingHeader">
+              <PropertyRef Name="PurID" />
+            </Principal>
+            <Dependent Role="PurchasingDetail">
+              <PropertyRef Name="PurId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreID_OrderDetail">
+          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreID_StoreDetail">
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
+          <End Role="StoreDetail" Type="Self.StoreDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="StoreDetail">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SuplierID_P">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="PurchasingHeader" Type="Self.PurchasingHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="SupID" />
+            </Principal>
+            <Dependent Role="PurchasingHeader">
+              <PropertyRef Name="SuplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetOrdersByCusID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maKH" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="OrderID" Type="int" Nullable="false" />
+                <Property Name="OrderDate" Type="date" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetOrdersDetailByOrderID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maHD" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ProductID" Type="int" Nullable="false" />
+                <Property Name="Name" Type="nvarchar" MaxLength="50" />
+                <Property Name="OrderQty" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetOrdersDetailInfoByOrderID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maHD" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="CusName" Type="nvarchar" MaxLength="50" />
+                <Property Name="EmpName" Type="nvarchar" MaxLength="50" />
+                <Property Name="DeiName" Type="nvarchar" MaxLength="50" />
+                <Property Name="OrderDate" Type="datetime" />
+                <Property Name="Discount" Type="int" />
+                <Property Name="SubTotal" Type="money" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetQtyProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="ProductID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetSlspFromCus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maKH" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ProductID" Type="int" Nullable="false" />
+                <Property Name="Name" Type="nvarchar" MaxLength="50" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetSlspFromSup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maNSX" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ProductID" Type="int" Nullable="false" />
+                <Property Name="Name" Type="nvarchar" MaxLength="50" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <EntityContainer Name="OlwenModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logistics" EntityType="Self.Logistics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderHeader" EntityType="Self.OrderHeader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductCategories" EntityType="Self.ProductCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchasingDetail" EntityType="Self.PurchasingDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchasingHeader" EntityType="Self.PurchasingHeader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalaryInfo" EntityType="Self.SalaryInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoreDetail" EntityType="Self.StoreDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CategoryID_Product" Association="Self.FK_CategoryID_Product">
+            <End Role="ProductCategories" EntitySet="ProductCategories" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CusID_Order" Association="Self.FK_CusID_Order">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="OrderHeader" EntitySet="OrderHeader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpID" Association="Self.FK_EmpID">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="SalaryInfo" EntitySet="SalaryInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpID_Acc" Association="Self.FK_EmpID_Acc">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpId_OH" Association="Self.FK_EmpId_OH">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="OrderHeader" EntitySet="OrderHeader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpId_P" Association="Self.FK_EmpId_P">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="PurchasingHeader" EntitySet="PurchasingHeader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpID_Store" Association="Self.FK_EmpID_Store">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Store" EntitySet="Store" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LogId_OH" Association="Self.FK_LogId_OH">
+            <End Role="Logistics" EntitySet="Logistics" />
+            <End Role="OrderHeader" EntitySet="OrderHeader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LogId_PH" Association="Self.FK_LogId_PH">
+            <End Role="Logistics" EntitySet="Logistics" />
+            <End Role="PurchasingHeader" EntitySet="PurchasingHeader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderId_OD" Association="Self.FK_OrderId_OD">
+            <End Role="OrderHeader" EntitySet="OrderHeader" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProId_OD" Association="Self.FK_ProId_OD">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProId_PurchasingDetail" Association="Self.FK_ProId_PurchasingDetail">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="PurchasingDetail" EntitySet="PurchasingDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProID_StoreDetail" Association="Self.FK_ProID_StoreDetail">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="StoreDetail" EntitySet="StoreDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchasingDetail_Store" Association="Self.FK_PurchasingDetail_Store">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="PurchasingDetail" EntitySet="PurchasingDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurId_PurchasingDetail" Association="Self.FK_PurId_PurchasingDetail">
+            <End Role="PurchasingHeader" EntitySet="PurchasingHeader" />
+            <End Role="PurchasingDetail" EntitySet="PurchasingDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreID_OrderDetail" Association="Self.FK_StoreID_OrderDetail">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreID_StoreDetail" Association="Self.FK_StoreID_StoreDetail">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="StoreDetail" EntitySet="StoreDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SuplierID_P" Association="Self.FK_SuplierID_P">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="PurchasingHeader" EntitySet="PurchasingHeader" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OlwenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="GetOrdersByCusID_Result">
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" />
+        </ComplexType>
+        <ComplexType Name="GetOrdersDetailByOrderID_Result">
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderQty" Type="Int32" />
+        </ComplexType>
+        <ComplexType Name="GetOrdersDetailInfoByOrderID_Result">
+          <Property Name="CusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DeiName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderDate" Type="DateTime" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="SubTotal" Type="Decimal" Precision="19" Scale="4" />
+        </ComplexType>
+        <ComplexType Name="GetSlspFromCus_Result">
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </ComplexType>
+        <ComplexType Name="GetSlspFromSup_Result">
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </ComplexType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="NameLogin" />
+          </Key>
+          <Property Name="NameLogin" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PassWord" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="Role" Type="Int32" />
+          <Property Name="Sex" Type="Boolean" />
+          <Property Name="EmpID" Type="Int32" />
+          <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_EmpID_Acc" FromRole="Account" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CusID" />
+          </Key>
+          <Property Name="CusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="Sex" Type="Boolean" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Kind" Type="Int32" />
+          <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="OrderHeaders" Relationship="Self.FK_CusID_Order" FromRole="Customer" ToRole="OrderHeader" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="Mission" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Sex" Type="Boolean" />
+          <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_EmpID_Acc" FromRole="Employee" ToRole="Account" />
+          <NavigationProperty Name="SalaryInfoes" Relationship="Self.FK_EmpID" FromRole="Employee" ToRole="SalaryInfo" />
+          <NavigationProperty Name="OrderHeaders" Relationship="Self.FK_EmpId_OH" FromRole="Employee" ToRole="OrderHeader" />
+          <NavigationProperty Name="PurchasingHeaders" Relationship="Self.FK_EmpId_P" FromRole="Employee" ToRole="PurchasingHeader" />
+          <NavigationProperty Name="Stores" Relationship="Self.FK_EmpID_Store" FromRole="Employee" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="Logistic">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fee" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="OrderHeaders" Relationship="Self.FK_LogId_OH" FromRole="Logistics" ToRole="OrderHeader" />
+          <NavigationProperty Name="PurchasingHeaders" Relationship="Self.FK_LogId_PH" FromRole="Logistics" ToRole="PurchasingHeader" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="OrderDetailId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="OrderDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderQty" Type="Int32" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="StoreID" Type="Int32" />
+          <NavigationProperty Name="OrderHeader" Relationship="Self.FK_OrderId_OD" FromRole="OrderDetail" ToRole="OrderHeader" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_ProId_OD" FromRole="OrderDetail" ToRole="Product" />
+          <NavigationProperty Name="Store" Relationship="Self.FK_StoreID_OrderDetail" FromRole="OrderDetail" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="OrderHeader">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CusID" Type="Int32" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="EmpId" Type="Int32" />
+          <Property Name="LogId" Type="Int32" />
+          <Property Name="Discount" Type="Int32" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_CusID_Order" FromRole="OrderHeader" ToRole="Customer" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_EmpId_OH" FromRole="OrderHeader" ToRole="Employee" />
+          <NavigationProperty Name="Logistic" Relationship="Self.FK_LogId_OH" FromRole="OrderHeader" ToRole="Logistics" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderId_OD" FromRole="OrderHeader" ToRole="OrderDetail" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="UnitOnOrder" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CategoryID" Type="Int32" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_ProId_OD" FromRole="Product" ToRole="OrderDetail" />
+          <NavigationProperty Name="ProductCategory" Relationship="Self.FK_CategoryID_Product" FromRole="Product" ToRole="ProductCategories" />
+          <NavigationProperty Name="StoreDetails" Relationship="Self.FK_ProID_StoreDetail" FromRole="Product" ToRole="StoreDetail" />
+          <NavigationProperty Name="PurchasingDetails" Relationship="OlwenModel.FK_ProId_PurchasingDetail" FromRole="Product" ToRole="PurchasingDetail" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="CatelogyID" />
+          </Key>
+          <Property Name="CatelogyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_CategoryID_Product" FromRole="ProductCategories" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="PurchasingHeader">
+          <Key>
+            <PropertyRef Name="PurID" />
+          </Key>
+          <Property Name="PurID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SuplierID" Type="Int32" />
+          <Property Name="PurDate" Type="DateTime" Precision="0" />
+          <Property Name="LogID" Type="Int32" />
+          <Property Name="EmpID" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_EmpId_P" FromRole="PurchasingHeader" ToRole="Employee" />
+          <NavigationProperty Name="Logistic" Relationship="Self.FK_LogId_PH" FromRole="PurchasingHeader" ToRole="Logistics" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_SuplierID_P" FromRole="PurchasingHeader" ToRole="Supplier" />
+          <NavigationProperty Name="PurchasingDetails" Relationship="OlwenModel.FK_PurId_PurchasingDetail" FromRole="PurchasingHeader" ToRole="PurchasingDetail" />
+        </EntityType>
+        <EntityType Name="SalaryInfo">
+          <Key>
+            <PropertyRef Name="EmpID" />
+            <PropertyRef Name="Num" />
+          </Key>
+          <Property Name="EmpID" Type="Int32" Nullable="false" />
+          <Property Name="DateSalary" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SalaryPay" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Num" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_EmpID" FromRole="SalaryInfo" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="StoreID" />
+          </Key>
+          <Property Name="StoreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmpID_Control" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_EmpID_Store" FromRole="Store" ToRole="Employee" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_StoreID_OrderDetail" FromRole="Store" ToRole="OrderDetail" />
+          <NavigationProperty Name="StoreDetails" Relationship="Self.FK_StoreID_StoreDetail" FromRole="Store" ToRole="StoreDetail" />
+          <NavigationProperty Name="PurchasingDetails" Relationship="OlwenModel.FK_PurchasingDetail_Store" FromRole="Store" ToRole="PurchasingDetail" />
+        </EntityType>
+        <EntityType Name="StoreDetail">
+          <Key>
+            <PropertyRef Name="StoreID" />
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="StoreID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_ProID_StoreDetail" FromRole="StoreDetail" ToRole="Product" />
+          <NavigationProperty Name="Store" Relationship="Self.FK_StoreID_StoreDetail" FromRole="StoreDetail" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="SupID" />
+          </Key>
+          <Property Name="SupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Delegate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="PurchasingHeaders" Relationship="Self.FK_SuplierID_P" FromRole="Supplier" ToRole="PurchasingHeader" />
+        </EntityType>
+        <Association Name="FK_EmpID_Acc">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="EmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CusID_Order">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="OrderHeader" Type="Self.OrderHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CusID" />
+            </Principal>
+            <Dependent Role="OrderHeader">
+              <PropertyRef Name="CusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpID">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SalaryInfo" Type="Self.SalaryInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="SalaryInfo">
+              <PropertyRef Name="EmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpId_OH">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="OrderHeader" Type="Self.OrderHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="OrderHeader">
+              <PropertyRef Name="EmpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpId_P">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="PurchasingHeader" Type="Self.PurchasingHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="PurchasingHeader">
+              <PropertyRef Name="EmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpID_Store">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Store" Type="Self.Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="Store">
+              <PropertyRef Name="EmpID_Control" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LogId_OH">
+          <End Role="Logistics" Type="Self.Logistic" Multiplicity="0..1" />
+          <End Role="OrderHeader" Type="Self.OrderHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Logistics">
+              <PropertyRef Name="LogID" />
+            </Principal>
+            <Dependent Role="OrderHeader">
+              <PropertyRef Name="LogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LogId_PH">
+          <End Role="Logistics" Type="Self.Logistic" Multiplicity="0..1" />
+          <End Role="PurchasingHeader" Type="Self.PurchasingHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Logistics">
+              <PropertyRef Name="LogID" />
+            </Principal>
+            <Dependent Role="PurchasingHeader">
+              <PropertyRef Name="LogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderId_OD">
+          <End Role="OrderHeader" Type="Self.OrderHeader" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderHeader">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProId_OD">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreID_OrderDetail">
+          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryID_Product">
+          <End Role="ProductCategories" Type="Self.ProductCategory" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategories">
+              <PropertyRef Name="CatelogyID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProID_StoreDetail">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="StoreDetail" Type="Self.StoreDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="StoreDetail">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SuplierID_P">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="PurchasingHeader" Type="Self.PurchasingHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="SupID" />
+            </Principal>
+            <Dependent Role="PurchasingHeader">
+              <PropertyRef Name="SuplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreID_StoreDetail">
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
+          <End Role="StoreDetail" Type="Self.StoreDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="StoreDetail">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Logistics" EntityType="Self.Logistic" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+          <EntitySet Name="OrderHeaders" EntityType="Self.OrderHeader" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="ProductCategories" EntityType="Self.ProductCategory" />
+          <EntitySet Name="PurchasingHeaders" EntityType="Self.PurchasingHeader" />
+          <EntitySet Name="SalaryInfoes" EntityType="Self.SalaryInfo" />
+          <EntitySet Name="Stores" EntityType="Self.Store" />
+          <EntitySet Name="StoreDetails" EntityType="Self.StoreDetail" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <AssociationSet Name="FK_EmpID_Acc" Association="Self.FK_EmpID_Acc">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CusID_Order" Association="Self.FK_CusID_Order">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="OrderHeader" EntitySet="OrderHeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpID" Association="Self.FK_EmpID">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="SalaryInfo" EntitySet="SalaryInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpId_OH" Association="Self.FK_EmpId_OH">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="OrderHeader" EntitySet="OrderHeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpId_P" Association="Self.FK_EmpId_P">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="PurchasingHeader" EntitySet="PurchasingHeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpID_Store" Association="Self.FK_EmpID_Store">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Store" EntitySet="Stores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LogId_OH" Association="Self.FK_LogId_OH">
+            <End Role="Logistics" EntitySet="Logistics" />
+            <End Role="OrderHeader" EntitySet="OrderHeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LogId_PH" Association="Self.FK_LogId_PH">
+            <End Role="Logistics" EntitySet="Logistics" />
+            <End Role="PurchasingHeader" EntitySet="PurchasingHeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderId_OD" Association="Self.FK_OrderId_OD">
+            <End Role="OrderHeader" EntitySet="OrderHeaders" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProId_OD" Association="Self.FK_ProId_OD">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreID_OrderDetail" Association="Self.FK_StoreID_OrderDetail">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryID_Product" Association="Self.FK_CategoryID_Product">
+            <End Role="ProductCategories" EntitySet="ProductCategories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProID_StoreDetail" Association="Self.FK_ProID_StoreDetail">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="StoreDetail" EntitySet="StoreDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SuplierID_P" Association="Self.FK_SuplierID_P">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="PurchasingHeader" EntitySet="PurchasingHeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreID_StoreDetail" Association="Self.FK_StoreID_StoreDetail">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="StoreDetail" EntitySet="StoreDetails" />
+          </AssociationSet>
+          <FunctionImport Name="GetOrdersByCusID" IsComposable="true" ReturnType="Collection(OlwenModel.GetOrdersByCusID_Result)">
+          <Parameter Name="maKH" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetOrdersDetailByOrderID" IsComposable="true" ReturnType="Collection(OlwenModel.GetOrdersDetailByOrderID_Result)">
+          <Parameter Name="maHD" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetOrdersDetailInfoByOrderID" IsComposable="true" ReturnType="Collection(OlwenModel.GetOrdersDetailInfoByOrderID_Result)">
+          <Parameter Name="maHD" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetSlspFromCus" IsComposable="true" ReturnType="Collection(OlwenModel.GetSlspFromCus_Result)">
+          <Parameter Name="maKH" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetSlspFromSup" IsComposable="true" ReturnType="Collection(OlwenModel.GetSlspFromSup_Result)">
+          <Parameter Name="maNSX" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="PurchasingDetails" EntityType="OlwenModel.PurchasingDetail" />
+          <AssociationSet Name="FK_ProId_PurchasingDetail" Association="OlwenModel.FK_ProId_PurchasingDetail">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="PurchasingDetail" EntitySet="PurchasingDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchasingDetail_Store" Association="OlwenModel.FK_PurchasingDetail_Store">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="PurchasingDetail" EntitySet="PurchasingDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurId_PurchasingDetail" Association="OlwenModel.FK_PurId_PurchasingDetail">
+            <End Role="PurchasingHeader" EntitySet="PurchasingHeaders" />
+            <End Role="PurchasingDetail" EntitySet="PurchasingDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="PurchasingDetail">
+          <Key>
+            <PropertyRef Name="PurId" />
+            <PropertyRef Name="PurDetailId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="PurId" Type="Int32" Nullable="false" />
+          <Property Name="PurDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PurQty" Type="Int32" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="StoreID" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="OlwenModel.FK_ProId_PurchasingDetail" FromRole="PurchasingDetail" ToRole="Product" />
+          <NavigationProperty Name="Store" Relationship="OlwenModel.FK_PurchasingDetail_Store" FromRole="PurchasingDetail" ToRole="Store" />
+          <NavigationProperty Name="PurchasingHeader" Relationship="OlwenModel.FK_PurId_PurchasingDetail" FromRole="PurchasingDetail" ToRole="PurchasingHeader" />
+        </EntityType>
+        <Association Name="FK_ProId_PurchasingDetail">
+          <End Type="OlwenModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="OlwenModel.PurchasingDetail" Role="PurchasingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="PurchasingDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchasingDetail_Store">
+          <End Type="OlwenModel.Store" Role="Store" Multiplicity="0..1" />
+          <End Type="OlwenModel.PurchasingDetail" Role="PurchasingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="PurchasingDetail">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurId_PurchasingDetail">
+          <End Type="OlwenModel.PurchasingHeader" Role="PurchasingHeader" Multiplicity="1" />
+          <End Type="OlwenModel.PurchasingDetail" Role="PurchasingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchasingHeader">
+              <PropertyRef Name="PurID" />
+            </Principal>
+            <Dependent Role="PurchasingDetail">
+              <PropertyRef Name="PurId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OlwenModelStoreContainer" CdmEntityContainer="DbEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="OlwenModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="NameLogin" ColumnName="NameLogin" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="OlwenModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CusID" ColumnName="CusID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Kind" ColumnName="Kind" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="OlwenModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Mission" ColumnName="Mission" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logistics">
+            <EntityTypeMapping TypeName="OlwenModel.Logistic">
+              <MappingFragment StoreEntitySet="Logistics">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LogID" ColumnName="LogID" />
+                <ScalarProperty Name="Fee" ColumnName="Fee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="OlwenModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetail">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderDetailId" ColumnName="OrderDetailId" />
+                <ScalarProperty Name="OrderQty" ColumnName="OrderQty" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderHeaders">
+            <EntityTypeMapping TypeName="OlwenModel.OrderHeader">
+              <MappingFragment StoreEntitySet="OrderHeader">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="CusID" ColumnName="CusID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="OlwenModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="UnitOnOrder" ColumnName="UnitOnOrder" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductCategories">
+            <EntityTypeMapping TypeName="OlwenModel.ProductCategory">
+              <MappingFragment StoreEntitySet="ProductCategories">
+                <ScalarProperty Name="CatelogyID" ColumnName="CatelogyID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchasingHeaders">
+            <EntityTypeMapping TypeName="OlwenModel.PurchasingHeader">
+              <MappingFragment StoreEntitySet="PurchasingHeader">
+                <ScalarProperty Name="PurID" ColumnName="PurID" />
+                <ScalarProperty Name="SuplierID" ColumnName="SuplierID" />
+                <ScalarProperty Name="PurDate" ColumnName="PurDate" />
+                <ScalarProperty Name="LogID" ColumnName="LogID" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalaryInfoes">
+            <EntityTypeMapping TypeName="OlwenModel.SalaryInfo">
+              <MappingFragment StoreEntitySet="SalaryInfo">
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="DateSalary" ColumnName="DateSalary" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SalaryPay" ColumnName="SalaryPay" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stores">
+            <EntityTypeMapping TypeName="OlwenModel.Store">
+              <MappingFragment StoreEntitySet="Store">
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EmpID_Control" ColumnName="EmpID_Control" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoreDetails">
+            <EntityTypeMapping TypeName="OlwenModel.StoreDetail">
+              <MappingFragment StoreEntitySet="StoreDetail">
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="OlwenModel.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="SupID" ColumnName="SupID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Delegate" ColumnName="Delegate" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionName="OlwenModel.Store.GetOrdersByCusID" FunctionImportName="GetOrdersByCusID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OlwenModel.GetOrdersByCusID_Result">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="OlwenModel.Store.GetOrdersDetailByOrderID" FunctionImportName="GetOrdersDetailByOrderID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OlwenModel.GetOrdersDetailByOrderID_Result">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OrderQty" ColumnName="OrderQty" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="OlwenModel.Store.GetOrdersDetailInfoByOrderID" FunctionImportName="GetOrdersDetailInfoByOrderID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OlwenModel.GetOrdersDetailInfoByOrderID_Result">
+                <ScalarProperty Name="CusName" ColumnName="CusName" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="DeiName" ColumnName="DeiName" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="OlwenModel.Store.GetSlspFromCus" FunctionImportName="GetSlspFromCus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OlwenModel.GetSlspFromCus_Result">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="OlwenModel.Store.GetSlspFromSup" FunctionImportName="GetSlspFromSup">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OlwenModel.GetSlspFromSup_Result">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="PurchasingDetails">
+            <EntityTypeMapping TypeName="OlwenModel.PurchasingDetail">
+              <MappingFragment StoreEntitySet="PurchasingDetail">
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="PurQty" ColumnName="PurQty" />
+                <ScalarProperty Name="PurDetailId" ColumnName="PurDetailId" />
+                <ScalarProperty Name="PurId" ColumnName="PurId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

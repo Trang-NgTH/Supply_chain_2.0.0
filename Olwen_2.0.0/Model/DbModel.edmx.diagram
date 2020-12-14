@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bade07762d2341fba3167f1119c073fa" Name="Diagram1" ZoomLevel="120">
+        <EntityTypeShape EntityType="OlwenModel.Account" Width="1.5" PointX="0.5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlwenModel.Customer" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlwenModel.Employee" Width="1.5" PointX="0.5" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlwenModel.Logistic" Width="1.5" PointX="7.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlwenModel.OrderDetail" Width="1.5" PointX="9.125" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlwenModel.OrderHeader" Width="1.5" PointX="2.875" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlwenModel.Product" Width="1.5" PointX="13.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlwenModel.ProductCategory" Width="1.5" PointX="16.875" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlwenModel.PurchasingHeader" Width="1.5" PointX="4" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlwenModel.SalaryInfo" Width="1.5" PointX="4.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlwenModel.Store" Width="1.5" PointX="10.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlwenModel.StoreDetail" Width="1.5" PointX="14.625" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlwenModel.Supplier" Width="1.5" PointX="11.625" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="OlwenModel.FK_EmpID_Acc" ManuallyRouted="false" />
+        <AssociationConnector Association="OlwenModel.FK_CusID_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="OlwenModel.FK_EmpID" ManuallyRouted="false" />
+        <AssociationConnector Association="OlwenModel.FK_EmpId_OH" ManuallyRouted="false" />
+        <AssociationConnector Association="OlwenModel.FK_EmpId_P" ManuallyRouted="false" />
+        <AssociationConnector Association="OlwenModel.FK_EmpID_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="OlwenModel.FK_LogId_OH" ManuallyRouted="false" />
+        <AssociationConnector Association="OlwenModel.FK_LogId_PH" ManuallyRouted="false" />
+        <AssociationConnector Association="OlwenModel.FK_OrderId_OD" ManuallyRouted="false" />
+        <AssociationConnector Association="OlwenModel.FK_ProId_OD" ManuallyRouted="false" />
+        <AssociationConnector Association="OlwenModel.FK_StoreID_OrderDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="OlwenModel.FK_CategoryID_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="OlwenModel.FK_ProID_StoreDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="OlwenModel.FK_SuplierID_P" ManuallyRouted="false" />
+        <AssociationConnector Association="OlwenModel.FK_StoreID_StoreDetail" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="OlwenModel.PurchasingDetail" Width="1.5" PointX="17" PointY="13.5" />
+        <AssociationConnector Association="OlwenModel.FK_ProId_PurchasingDetail" />
+        <AssociationConnector Association="OlwenModel.FK_PurchasingDetail_Store" />
+        <AssociationConnector Association="OlwenModel.FK_PurId_PurchasingDetail" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

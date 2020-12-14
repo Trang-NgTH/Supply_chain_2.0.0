@@ -1,0 +1,646 @@
+﻿<UserControl x:Class="Olwen_2._0._0.View.Components.PurchasingProfile"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Olwen_2._0._0.View.Components"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             DataContext="{Binding CreatePurchasing, Source={StaticResource Locator}}"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             Background="#F5F5F5">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadingCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <md:DialogHost Identifier="RootDialogHostsm1">
+        <StackPanel Width="1100">
+
+            <Border BorderThickness="0.5"
+                    BorderBrush="Gray"
+                    Margin="20"
+                    Background="White"
+                    CornerRadius="20">
+                <StackPanel>
+
+                    <Grid Height="87">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+
+                            <TextBlock Foreground="#6C757D"
+                                       Text="Supplier"
+                                       Margin="20 10 20 0"
+                                       FontSize="16"
+                                       FontWeight="DemiBold" />
+
+                            <ComboBox Height="60"
+                                      Margin="20 0"
+                                      md:HintAssist.Hint="Supplier"
+                                      MinWidth="72"
+                                      VerticalContentAlignment="Center"
+                                      SelectedItem="{Binding SelectedCus,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                      ItemsSource="{Binding ListCus,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+
+                                        <Grid Margin="0 10">
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.5*" />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock VerticalAlignment="Center"
+                                                       Foreground="Black"
+                                                       Text="{Binding CusID,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                       Margin="10 0 0 0"
+                                                       Grid.Column="0" />
+
+                                            <TextBlock VerticalAlignment="Center"
+                                                       Foreground="Black"
+                                                       Text="{Binding Name,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                       Margin="10 0 0 0"
+                                                       Grid.Column="1" />
+
+                                        </Grid>
+
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                                <ComboBox.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ComboBoxItem}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                                    <Border x:Name="Bd"
+                                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                                            Background="{TemplateBinding Background}">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                                            <Label Content="{Binding Title}"
+                                                                   Width="100" />
+                                                            <Label Content="{Binding BranchName}" />
+                                                        </StackPanel>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsHighlighted"
+                                                                 Value="True">
+                                                            <Setter TargetName="Bd"
+                                                                    Property="Background"
+                                                                    Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                                                            <Setter Property="Foreground"
+                                                                    Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
+                                                        </Trigger>
+                                                        <Trigger Property="IsEnabled"
+                                                                 Value="False">
+                                                            <Setter Property="Foreground"
+                                                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ComboBox.ItemContainerStyle>
+                            </ComboBox>
+
+                        </StackPanel>
+
+
+
+                        <StackPanel Grid.Column="1">
+
+                            <TextBlock Foreground="#FFC107"
+                                       Text="Logictics"
+                                       Margin="20 10 20 0"
+                                       FontSize="16"
+                                       FontWeight="DemiBold" />
+
+                            <ComboBox Height="60"
+                                      Margin="20 0"
+                                      md:HintAssist.Hint="Logictics"
+                                      MinWidth="72"
+                                      VerticalContentAlignment="Center"
+                                      SelectedItem="{Binding SelectedLog,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                      ItemsSource="{Binding ListLog,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+
+                                        <Grid Margin="0 10">
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.5*" />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock VerticalAlignment="Center"
+                                                       Foreground="Black"
+                                                       Text="{Binding LogID,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                       Margin="10 0 0 0"
+                                                       Grid.Column="0" />
+
+                                            <TextBlock VerticalAlignment="Center"
+                                                       Foreground="Black"
+                                                       Text="{Binding Name,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                       Margin="10 0 0 0"
+                                                       Grid.Column="1" />
+
+                                        </Grid>
+
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                                <ComboBox.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ComboBoxItem}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                                    <Border x:Name="Bd"
+                                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                                            Background="{TemplateBinding Background}">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                                            <Label Content="{Binding Title}"
+                                                                   Width="100" />
+                                                            <Label Content="{Binding BranchName}" />
+                                                        </StackPanel>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsHighlighted"
+                                                                 Value="True">
+                                                            <Setter TargetName="Bd"
+                                                                    Property="Background"
+                                                                    Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                                                            <Setter Property="Foreground"
+                                                                    Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
+                                                        </Trigger>
+                                                        <Trigger Property="IsEnabled"
+                                                                 Value="False">
+                                                            <Setter Property="Foreground"
+                                                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ComboBox.ItemContainerStyle>
+                            </ComboBox>
+
+
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+
+                            <TextBlock Foreground="#F44336"
+                                       Text="Employee"
+                                       Margin="20 10"
+                                       FontSize="16"
+                                       FontWeight="DemiBold" />
+
+                            <TextBlock Margin="20 0"
+                                       FontSize="16"
+                                       Text="{Binding EmployeeName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+
+                        </StackPanel>
+
+                    </Grid>
+
+                    <Grid Height="100">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+
+                            <TextBlock Foreground="#3D5AFE"
+                                       Text="Discount"
+                                       Margin="20 20 0 0"
+                                       FontSize="16"
+                                       FontWeight="DemiBold" />
+
+                            <ComboBox Height="60"
+                                      Margin="20 0"
+                                      md:HintAssist.Hint="Discount"
+                                      MinWidth="72"
+                                      VerticalContentAlignment="Center"
+                                      SelectedItem="{Binding SelectedDis,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                      ItemsSource="{Binding ListDis,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+
+                                <ComboBox.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ComboBoxItem}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                                    <Border x:Name="Bd"
+                                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                                            Background="{TemplateBinding Background}">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                                            <Label Content="{Binding Title}"
+                                                                   Width="100" />
+                                                            <Label Content="{Binding BranchName}" />
+                                                        </StackPanel>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsHighlighted"
+                                                                 Value="True">
+                                                            <Setter TargetName="Bd"
+                                                                    Property="Background"
+                                                                    Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                                                            <Setter Property="Foreground"
+                                                                    Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
+                                                        </Trigger>
+                                                        <Trigger Property="IsEnabled"
+                                                                 Value="False">
+                                                            <Setter Property="Foreground"
+                                                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ComboBox.ItemContainerStyle>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1">
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontWeight="DemiBold"
+                                           Foreground="#AA00FF"
+                                           Margin="20 20 0 0"
+                                           FontSize="15"
+                                           Text="List Product" />
+
+                                <TextBlock FontWeight="DemiBold"
+                                           Foreground="#FF6F00"
+                                           Margin="180 20 0 0"
+                                           FontSize="15"
+                                           Text="List Store" />
+
+                                
+
+                                <TextBlock FontWeight="DemiBold"
+                                           Foreground="#FF4081"
+                                           Margin="185 20 0 0"
+                                           FontSize="15"
+                                           Text="Quantity" />
+                            </StackPanel>
+
+                            <StackPanel Margin="20 0 0 0"
+                                        Orientation="Horizontal">
+
+                                <ComboBox Height="60"
+                                          Width="240"
+                                          md:HintAssist.Hint="Products"
+                                          MinWidth="72"
+                                          VerticalContentAlignment="Center"
+                                          SelectedItem="{Binding SelectedPro,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                          ItemsSource="{Binding ListPro,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                          Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+
+                                            <Grid Margin="0 10">
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="0.5*" />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock VerticalAlignment="Center"
+                                                           Foreground="Black"
+                                                           Text="{Binding ProductID,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                           Margin="10 0 0 0"
+                                                           Grid.Column="0" />
+
+                                                <TextBlock VerticalAlignment="Center"
+                                                           Foreground="Black"
+                                                           Text="{Binding Name,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                           Margin="10 0 0 0"
+                                                           Grid.Column="1" />
+
+                                            </Grid>
+
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ComboBoxItem}">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                                        <Border x:Name="Bd"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                Background="{TemplateBinding Background}">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                                                <Label Content="{Binding Title}"
+                                                                       Width="100" />
+                                                                <Label Content="{Binding BranchName}" />
+                                                            </StackPanel>
+                                                        </Border>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsHighlighted"
+                                                                     Value="True">
+                                                                <Setter TargetName="Bd"
+                                                                        Property="Background"
+                                                                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                                                                <Setter Property="Foreground"
+                                                                        Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
+                                                            </Trigger>
+                                                            <Trigger Property="IsEnabled"
+                                                                     Value="False">
+                                                                <Setter Property="Foreground"
+                                                                        Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                </ComboBox>
+
+
+                                <ComboBox md:HintAssist.Hint="Stores"
+                                          VerticalContentAlignment="Center"
+                                          MinWidth="160"
+                                          Height="60"
+                                          Margin="20 0 0 0"
+                                          SelectedItem="{Binding SelectedSto,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                          ItemsSource="{Binding ListStore,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                          Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border>
+                                                <TextBlock VerticalAlignment="Center"
+                                                           Text="{Binding Name,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                           Margin="10 0 0 0"
+                                                           Grid.Column="1" />
+
+                                            </Border>
+
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ComboBoxItem}">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                                        <Border x:Name="Bd"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                Background="{TemplateBinding Background}">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+
+                                                            </StackPanel>
+                                                        </Border>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsHighlighted"
+                                                                     Value="True">
+                                                                <Setter TargetName="Bd"
+                                                                        Property="Background"
+                                                                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                                                                <Setter Property="Foreground"
+                                                                        Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
+                                                            </Trigger>
+                                                            <Trigger Property="IsEnabled"
+                                                                     Value="False">
+                                                                <Setter Property="Foreground"
+                                                                        Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+
+                                </ComboBox>
+
+                               
+                                <TextBox Width="80"
+                                         Height="60"
+                                         Text="{Binding Qty,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                         Margin="80 5 0 5"
+                                         Style="{StaticResource MaterialDesignFilledTextFieldTextBox}" />
+
+                                <Button Command="{Binding InsertToCart}"
+                                        CommandParameter="{Binding SelectedPro.ProductID,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                        BorderBrush="{x:Null}"
+                                        Background="#00E676"
+                                        Content="Insert Into Store"
+                                        Foreground="White"
+                                        Margin="60 0 20 0" />
+                            </StackPanel>
+
+                        </StackPanel>
+
+                    </Grid>
+
+                </StackPanel>
+
+            </Border>
+
+
+            <Grid Height="360"
+                  Margin="20 30">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Border BorderThickness="0.5"
+                        Grid.Column="0"
+                        Margin="0 0 20 0"
+                        BorderBrush="Gray"
+                        Background="White"
+                        CornerRadius="20">
+
+                    <StackPanel Margin="20">
+
+                        <TextBlock FontSize="16"
+                                   Margin="0 0 0 20"
+                                   FontWeight="DemiBold"
+                                   Text="Purchasing Detail" />
+
+                        <ListView   x:Name="lvDetail"
+                                    Height="270"
+                                    ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                    ItemsSource="{Binding ListOD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    SelectedItem="{Binding SelectedEmp,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    ItemContainerStyle="{StaticResource ListViewContainerStyle}">
+
+                            <ListView.ItemTemplate>
+
+                                <DataTemplate>
+
+                                    <Border CornerRadius="10"
+                                            Width="710"
+                                            x:Name="Border"
+                                            Height="60"
+                                            Background="#FFF3F3F3">
+                                        <Grid>
+
+                                            <TextBlock FontSize="14"
+                                                       VerticalAlignment="Center"
+                                                       Margin="20 0 0 0"
+                                                       Text="{Binding ProductID,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+
+                                            <TextBlock FontSize="14"
+                                                       Text="{Binding Name,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                       VerticalAlignment="Center"
+                                                       Margin="100 0 0 0" />
+
+                                            <TextBlock FontSize="14"
+                                                       Text="{Binding OrderQty,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center"
+                                                       Margin="0 0 140 0" />
+
+                                            <TextBlock FontSize="14"
+                                                       Text="{Binding UnitPrice,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center"
+                                                       Margin="120 0 0 0" />
+
+                                            <TextBlock FontSize="14"
+                                                       Text="{Binding SubTotal,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center"
+                                                       Margin="360 0 0 0" />
+
+                                            <Button Command="{Binding ElementName=lvDetail,Path=DataContext.DeleteProODCommand}"
+                                                    CommandParameter="{Binding ProductID,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                    BorderBrush="{x:Null}"
+                                                    BorderThickness="0"
+                                                    Background="#DC3545"
+                                                    HorizontalAlignment="Right"
+                                                    Margin="0 0 20 0"
+                                                    Content="Delete"
+                                                    Padding="0"
+                                                    Foreground="White"
+                                                    FontSize="13"
+                                                    Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                                                    Width="80"
+                                                    Height="40" />
+
+                                        </Grid>
+                                    </Border>
+
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor,   
+                                            AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                     Value="True">
+                                            <Setter TargetName="Border"
+                                                    Property="Background"
+                                                    Value="#F9F9FA"></Setter>
+                                        </DataTrigger>
+
+
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor,   
+                                            AncestorType={x:Type ListViewItem}}, Path=IsMouseOver}"
+                                                     Value="True">
+                                            <Setter TargetName="Border"
+                                                    Property="Background"
+                                                    Value="#F9F9FA"></Setter>
+
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+
+                        </ListView>
+
+
+
+
+                    </StackPanel>
+
+                </Border>
+
+                <Border BorderThickness="0.5"
+                        BorderBrush="Gray"
+                        Background="White"
+                        Grid.Column="1"
+                        CornerRadius="20">
+
+                    <StackPanel>
+
+                        <TextBlock FontSize="18"
+                                   Margin="20 20 0 0"
+                                   FontWeight="DemiBold"
+                                   Text="Tổng Tiền:" />
+
+                        <TextBlock Margin="20"
+                                   FontSize="18"
+                                   Text="{Binding Subtotal,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+
+                        <TextBlock FontSize="18"
+                                   Margin="20 20 0 0"
+                                   FontWeight="DemiBold"
+                                   Text="Giảm Giá :" />
+
+                        <TextBlock Margin="20"
+                                   FontSize="18"
+                                   Foreground="#4BD561"
+                                   Text="{Binding SelectedDis,
+                                    UpdateSourceTrigger=PropertyChanged,
+                                    Mode=TwoWay,StringFormat={}{0:F0}%}" />
+
+                        <TextBlock FontSize="18"
+                                   Margin="20 20 0 0"
+                                   FontWeight="DemiBold"
+                                   Text="Thành Tiền :" />
+
+                        <TextBlock Margin="20"
+                                   Foreground="#FF0303"
+                                   FontSize="18"
+                                   Text="{Binding TotalDue,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+
+
+                    </StackPanel>
+
+                </Border>
+
+
+
+            </Grid>
+
+
+            <Button HorizontalAlignment="Right"
+                    Command="{Binding CreateOrderCommand}"
+                    BorderBrush="{x:Null}"
+                    Background="#007BFF"
+                    Content="Create Order"
+                    Foreground="White"
+                    Margin="0 0 120 20" />
+
+        </StackPanel>
+    </md:DialogHost>
+
+</UserControl>

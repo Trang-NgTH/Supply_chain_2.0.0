@@ -1,0 +1,530 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OlwenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="NameLogin" />
+    </Key>
+    <Property Name="NameLogin" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="PassWord" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="char" MaxLength="14" />
+    <Property Name="Role" Type="int" />
+    <Property Name="Sex" Type="bit" />
+    <Property Name="EmpID" Type="int" />
+    <Property Name="Avatar" Type="image" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CusID" />
+    </Key>
+    <Property Name="CusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="char" MaxLength="14" />
+    <Property Name="Sex" Type="bit" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Kind" Type="int" />
+    <Property Name="Avatar" Type="image" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmpID" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmpID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="char" MaxLength="14" />
+    <Property Name="Mission" Type="nvarchar(max)" />
+    <Property Name="Salary" Type="money" />
+    <Property Name="Sex" Type="bit" />
+    <Property Name="Avatar" Type="image" />
+  </EntityType>
+  <EntityType Name="Logistics">
+    <Key>
+      <PropertyRef Name="LogID" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="LogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fee" Type="money" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="OrderId" />
+      <PropertyRef Name="OrderDetailId" />
+    </Key>
+    <Property Name="ProductId" Type="int" />
+    <Property Name="OrderId" Type="int" Nullable="false" />
+    <Property Name="OrderDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderQty" Type="int" />
+    <Property Name="UnitPrice" Type="money" />
+    <Property Name="StoreID" Type="int" />
+  </EntityType>
+  <EntityType Name="OrderHeader">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CusID" Type="int" />
+    <Property Name="OrderDate" Type="datetime" />
+    <Property Name="EmpId" Type="int" />
+    <Property Name="LogId" Type="int" />
+    <Property Name="Discount" Type="int" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="UnitPrice" Type="money" />
+    <Property Name="UnitOnOrder" Type="money" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Picture" Type="image" />
+    <Property Name="CategoryID" Type="int" />
+  </EntityType>
+  <EntityType Name="ProductCategories">
+    <Key>
+      <PropertyRef Name="CatelogyID" />
+    </Key>
+    <Property Name="CatelogyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Picture" Type="image" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="PurchasingDetail">
+    <Key>
+      <PropertyRef Name="PurId" />
+      <PropertyRef Name="PurDetailId" />
+    </Key>
+    <Property Name="ProductId" Type="int" />
+    <Property Name="PurId" Type="int" Nullable="false" />
+    <Property Name="PurDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PurQty" Type="int" />
+    <Property Name="UnitPrice" Type="money" />
+    <Property Name="StoreID" Type="int" />
+  </EntityType>
+  <EntityType Name="PurchasingHeader">
+    <Key>
+      <PropertyRef Name="PurID" />
+    </Key>
+    <Property Name="PurID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SuplierID" Type="int" />
+    <Property Name="PurDate" Type="date" />
+    <Property Name="LogID" Type="int" />
+    <Property Name="EmpID" Type="int" />
+  </EntityType>
+  <EntityType Name="SalaryInfo">
+    <Key>
+      <PropertyRef Name="EmpID" />
+      <PropertyRef Name="Num" />
+    </Key>
+    <Property Name="EmpID" Type="int" Nullable="false" />
+    <Property Name="DateSalary" Type="datetime" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="SalaryPay" Type="money" />
+    <Property Name="Num" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Store">
+    <Key>
+      <PropertyRef Name="StoreID" />
+    </Key>
+    <Property Name="StoreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="EmpID_Control" Type="int" />
+  </EntityType>
+  <EntityType Name="StoreDetail">
+    <Key>
+      <PropertyRef Name="StoreID" />
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="StoreID" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="SupID" />
+    </Key>
+    <Property Name="SupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="char" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Delegate" Type="nvarchar" MaxLength="50" />
+    <Property Name="Avatar" Type="image" />
+  </EntityType>
+  <Association Name="FK_CategoryID_Product">
+    <End Role="ProductCategories" Type="Self.ProductCategories" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductCategories">
+        <PropertyRef Name="CatelogyID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CusID_Order">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="OrderHeader" Type="Self.OrderHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CusID" />
+      </Principal>
+      <Dependent Role="OrderHeader">
+        <PropertyRef Name="CusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmpID">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SalaryInfo" Type="Self.SalaryInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="SalaryInfo">
+        <PropertyRef Name="EmpID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmpID_Acc">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="EmpID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmpId_OH">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="OrderHeader" Type="Self.OrderHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="OrderHeader">
+        <PropertyRef Name="EmpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmpId_P">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="PurchasingHeader" Type="Self.PurchasingHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="PurchasingHeader">
+        <PropertyRef Name="EmpID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmpID_Store">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Store" Type="Self.Store" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="Store">
+        <PropertyRef Name="EmpID_Control" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LogId_OH">
+    <End Role="Logistics" Type="Self.Logistics" Multiplicity="0..1" />
+    <End Role="OrderHeader" Type="Self.OrderHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Logistics">
+        <PropertyRef Name="LogID" />
+      </Principal>
+      <Dependent Role="OrderHeader">
+        <PropertyRef Name="LogId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LogId_PH">
+    <End Role="Logistics" Type="Self.Logistics" Multiplicity="0..1" />
+    <End Role="PurchasingHeader" Type="Self.PurchasingHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Logistics">
+        <PropertyRef Name="LogID" />
+      </Principal>
+      <Dependent Role="PurchasingHeader">
+        <PropertyRef Name="LogID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderId_OD">
+    <End Role="OrderHeader" Type="Self.OrderHeader" Multiplicity="1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderHeader">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProId_OD">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProId_PurchasingDetail">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="PurchasingDetail" Type="Self.PurchasingDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="PurchasingDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProID_StoreDetail">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="StoreDetail" Type="Self.StoreDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="StoreDetail">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchasingDetail_Store">
+    <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+    <End Role="PurchasingDetail" Type="Self.PurchasingDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store">
+        <PropertyRef Name="StoreID" />
+      </Principal>
+      <Dependent Role="PurchasingDetail">
+        <PropertyRef Name="StoreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurId_PurchasingDetail">
+    <End Role="PurchasingHeader" Type="Self.PurchasingHeader" Multiplicity="1" />
+    <End Role="PurchasingDetail" Type="Self.PurchasingDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PurchasingHeader">
+        <PropertyRef Name="PurID" />
+      </Principal>
+      <Dependent Role="PurchasingDetail">
+        <PropertyRef Name="PurId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoreID_OrderDetail">
+    <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store">
+        <PropertyRef Name="StoreID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="StoreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoreID_StoreDetail">
+    <End Role="Store" Type="Self.Store" Multiplicity="1" />
+    <End Role="StoreDetail" Type="Self.StoreDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store">
+        <PropertyRef Name="StoreID" />
+      </Principal>
+      <Dependent Role="StoreDetail">
+        <PropertyRef Name="StoreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SuplierID_P">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+    <End Role="PurchasingHeader" Type="Self.PurchasingHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="SupID" />
+      </Principal>
+      <Dependent Role="PurchasingHeader">
+        <PropertyRef Name="SuplierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GetOrdersByCusID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="maKH" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="date" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="GetOrdersDetailByOrderID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="maHD" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrderQty" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="GetOrdersDetailInfoByOrderID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="maHD" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="CusName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmpName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeiName" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="SubTotal" Type="money" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="GetQtyProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="ProductID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetSlspFromCus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="maKH" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="GetSlspFromSup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="maNSX" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <EntityContainer Name="OlwenModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Logistics" EntityType="Self.Logistics" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderHeader" EntityType="Self.OrderHeader" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductCategories" EntityType="Self.ProductCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PurchasingDetail" EntityType="Self.PurchasingDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PurchasingHeader" EntityType="Self.PurchasingHeader" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalaryInfo" EntityType="Self.SalaryInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StoreDetail" EntityType="Self.StoreDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CategoryID_Product" Association="Self.FK_CategoryID_Product">
+      <End Role="ProductCategories" EntitySet="ProductCategories" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CusID_Order" Association="Self.FK_CusID_Order">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="OrderHeader" EntitySet="OrderHeader" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmpID" Association="Self.FK_EmpID">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="SalaryInfo" EntitySet="SalaryInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmpID_Acc" Association="Self.FK_EmpID_Acc">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmpId_OH" Association="Self.FK_EmpId_OH">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="OrderHeader" EntitySet="OrderHeader" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmpId_P" Association="Self.FK_EmpId_P">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="PurchasingHeader" EntitySet="PurchasingHeader" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmpID_Store" Association="Self.FK_EmpID_Store">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Store" EntitySet="Store" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LogId_OH" Association="Self.FK_LogId_OH">
+      <End Role="Logistics" EntitySet="Logistics" />
+      <End Role="OrderHeader" EntitySet="OrderHeader" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LogId_PH" Association="Self.FK_LogId_PH">
+      <End Role="Logistics" EntitySet="Logistics" />
+      <End Role="PurchasingHeader" EntitySet="PurchasingHeader" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderId_OD" Association="Self.FK_OrderId_OD">
+      <End Role="OrderHeader" EntitySet="OrderHeader" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProId_OD" Association="Self.FK_ProId_OD">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProId_PurchasingDetail" Association="Self.FK_ProId_PurchasingDetail">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="PurchasingDetail" EntitySet="PurchasingDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProID_StoreDetail" Association="Self.FK_ProID_StoreDetail">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="StoreDetail" EntitySet="StoreDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchasingDetail_Store" Association="Self.FK_PurchasingDetail_Store">
+      <End Role="Store" EntitySet="Store" />
+      <End Role="PurchasingDetail" EntitySet="PurchasingDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurId_PurchasingDetail" Association="Self.FK_PurId_PurchasingDetail">
+      <End Role="PurchasingHeader" EntitySet="PurchasingHeader" />
+      <End Role="PurchasingDetail" EntitySet="PurchasingDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoreID_OrderDetail" Association="Self.FK_StoreID_OrderDetail">
+      <End Role="Store" EntitySet="Store" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoreID_StoreDetail" Association="Self.FK_StoreID_StoreDetail">
+      <End Role="Store" EntitySet="Store" />
+      <End Role="StoreDetail" EntitySet="StoreDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SuplierID_P" Association="Self.FK_SuplierID_P">
+      <End Role="Supplier" EntitySet="Supplier" />
+      <End Role="PurchasingHeader" EntitySet="PurchasingHeader" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

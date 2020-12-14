@@ -1,0 +1,394 @@
+﻿<UserControl x:Class="Olwen_2._0._0.View.Pages.PageCustomer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Olwen_2._0._0.View.Pages"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             DataContext="{Binding Customer, Source={StaticResource Locator}}"
+             
+             MinWidth="825"
+             Background="#F5F5F5"
+             d:DesignWidth="1260">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <materialDesign:DialogHost 
+        CloseOnClickAway="True"
+                               Identifier="RootDialogHost1w">
+        <Grid>
+
+        <Grid>
+            <StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="0 10">
+                    <TextBlock FontWeight="DemiBold"
+                               Margin="20 0 0 0"
+                               FontSize="30"
+                               Text="List Customer">
+
+                    </TextBlock>
+                    <Button     Command="{Binding AddCusCommand}"
+                                HorizontalAlignment="Left"
+                                Width="70"
+                                Height="30"
+                                Foreground="White"
+                                Padding="0"
+                                Content="Add"
+                                FontSize="13"
+                                Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                                Margin="40 0 0 0"
+                                BorderBrush="{x:Null}">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1"
+                                                 StartPoint="0.5,0">
+                                <GradientStop Color="#FF80F05D"
+                                              Offset="0" />
+                                <GradientStop Color="#FF22D672"
+                                              Offset="1" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+
+                    </Button>
+
+                    <Button     Command="{Binding RefreshCommand}"
+                                Width="70"
+                                Height="30"
+                                Background="#6C757D"
+                                Foreground="White"
+                                Padding="0"
+                                Content="Refresh"
+                                FontSize="13"
+                                Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                                Margin="40 0 0 0"
+                                BorderBrush="{x:Null}">
+
+                    </Button>
+
+                </StackPanel>
+
+                <Border HorizontalAlignment="Left"
+                        Margin="40 0 0 0"
+                        Width="760"
+                        Height="60">
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border Background="White"
+                                CornerRadius="30"
+                                Grid.Column="0">
+
+                            <Grid>
+
+                                <materialDesign:PackIcon VerticalAlignment="Center"
+                                                         Margin="20 0 0 0"
+                                                         Width="30"
+                                                         Height="30"
+                                                         Kind="Search"
+                                                         Foreground="#FF7F7575" />
+
+                                <TextBox Text="{Binding SeaKey,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                         VerticalContentAlignment="Center"
+                                         materialDesign:HintAssist.Hint="Searching By Keyword...."
+                                         Margin="70 0 30 0" />
+                            </Grid>
+
+                        </Border>
+
+
+                        <Grid Grid.Column="1">
+
+                            <ComboBox Background="White"
+                                      Margin="10 0 0 0"
+                                      materialDesign:HintAssist.Hint="KeyWord"
+                                      SelectedItem="{Binding SKey,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                      ItemsSource="{Binding ListKey,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+
+                                <ComboBox.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ComboBoxItem}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                                    <Border x:Name="Bd"
+                                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                                            Background="{TemplateBinding Background}">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                                            <Label Content="{Binding Title}"
+                                                                   Width="100" />
+                                                            <Label Content="{Binding BranchName}" />
+                                                        </StackPanel>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsHighlighted"
+                                                                 Value="True">
+                                                            <Setter TargetName="Bd"
+                                                                    Property="Background"
+                                                                    Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                                                            <Setter Property="Foreground"
+                                                                    Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
+                                                        </Trigger>
+                                                        <Trigger Property="IsEnabled"
+                                                                 Value="False">
+                                                            <Setter Property="Foreground"
+                                                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ComboBox.ItemContainerStyle>
+                            </ComboBox>
+
+                        </Grid>
+
+                    </Grid>
+                </Border>
+
+                <Grid>
+                    <Grid  Margin="20">
+
+                        <ListView   x:Name="lvCus"
+                                    Height="700"
+                                        ItemContainerStyle="{StaticResource ListViewContainerStyle}"
+                                    ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                    ItemsSource="{Binding ListCustomer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    SelectedItem="{Binding SelectedCus,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    >
+
+                            <ListView.ItemTemplate>
+
+                                <DataTemplate>
+
+                                    <materialDesign:Card Background="White"
+                                                         x:Name="Border"
+                                                         Height="470"
+                                                         Width="300"
+                                                         Margin="20 10">
+                                        <StackPanel>
+                                            <Ellipse Height="120"
+                                                     Width="120"
+                                                     Margin="0 10 0 0">
+                                                <Ellipse.Fill>
+                                                    <ImageBrush ImageSource="{Binding Image,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+                                                </Ellipse.Fill>
+                                            </Ellipse>
+                                            <TextBlock Margin="20 10 0 0"
+                                                       FontWeight="DemiBold"
+                                                       Foreground="Black"
+                                                       FontSize="23"
+                                                       Text="{Binding Name,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+                                            </TextBlock>
+                                            <TextBlock Margin="20 20 0 0"
+                                                       Foreground="Black"
+                                                       FontSize="18"
+                                                       Text="{Binding Address,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+                                            </TextBlock>
+                                            <Rectangle Margin="20 20 20 0"
+                                                       Height="2">
+                                                <Rectangle.Fill>
+                                                    <LinearGradientBrush>
+                                                        <GradientStop Color="#FF1649C0"
+                                                                      Offset="0" />
+                                                        <GradientStop Color="#FF1EA8DA"
+                                                                      Offset="1" />
+                                                    </LinearGradientBrush>
+                                                </Rectangle.Fill>
+                                            </Rectangle>
+                                            <TextBlock Foreground="#FF1EA8DA"
+                                                       FontSize="18"
+                                                       FontFamily="Consolas"
+                                                       Text="{Binding Phone,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                       Margin="20 20 0 0">
+                                            </TextBlock>
+                                            <TextBlock FontSize="16"
+                                                       Text="{Binding Email,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                       Margin="20 20 0 0" />
+                                            <Grid Margin="0 20 0 0">
+                                                <RadioButton x:Name="IsB"
+                                                             GroupName="btn"
+                                                             VerticalAlignment="Center"
+                                                             Margin="20 0 0 0">
+                                                    <RadioButton.Background>
+                                                        <LinearGradientBrush EndPoint="0.5,1"
+                                                                             StartPoint="0.5,0">
+                                                            <GradientStop Color="#FFA32BF4"
+                                                                          Offset="0" />
+                                                            <GradientStop Color="#FF1D93B7"
+                                                                          Offset="1" />
+                                                        </LinearGradientBrush>
+                                                    </RadioButton.Background>
+                                                </RadioButton>
+                                                <TextBlock FontSize="16"
+                                                           Margin="40 0 0 0"
+                                                           Text="Nam" />
+                                                <RadioButton x:Name="IsG"
+                                                             GroupName="btn"
+                                                             HorizontalAlignment="Right"
+                                                             VerticalAlignment="Center"
+                                                             Margin="0 0 140 0">
+                                                    <RadioButton.Background>
+                                                        <LinearGradientBrush EndPoint="0.5,1"
+                                                                             StartPoint="0.5,0">
+                                                            <GradientStop Color="#FFA32BF4"
+                                                                          Offset="0" />
+                                                            <GradientStop Color="#FF1D93B7"
+                                                                          Offset="1" />
+                                                        </LinearGradientBrush>
+                                                    </RadioButton.Background>
+                                                </RadioButton>
+                                                <TextBlock HorizontalAlignment="Right"
+                                                           FontSize="16"
+                                                           Margin="0 0 100 0"
+                                                           Text="Nữ" />
+                                            </Grid>
+                                            <TextBlock FontWeight="DemiBold"
+                                                       FontSize="16"
+                                                       x:Name="txtKind"
+                                                       Margin="20 20 0 0" />
+                                            <materialDesign:TransitioningContent x:Name="SlideBtn"
+                                                                                 Visibility="Hidden">
+
+                                                <materialDesign:TransitioningContent.OpeningEffects>
+                                                    <materialDesign:TransitionEffect Kind="SlideInFromBottom"
+                                                                                     Duration="0:0:0.4" />
+                                                </materialDesign:TransitioningContent.OpeningEffects>
+
+                                                <Grid Margin="0 20 0 0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition />
+                                                        <ColumnDefinition />
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Button Grid.Column="0"
+                                                            Command="{Binding ElementName=lvCus,Path=DataContext.ShowInfoCommand}"
+                                                            CommandParameter="{Binding CusID,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                            BorderBrush="{x:Null}"
+                                                            BorderThickness="0"
+                                                            Background="#007BFF"
+                                                            Content="Update"
+                                                            Padding="0"
+                                                            Foreground="White"
+                                                            FontSize="13"
+                                                            Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                                                            Width="80"
+                                                            Height="40" />
+
+                                                    <Button Grid.Column="1"
+                                                            Command="{Binding ElementName=lvCus,Path=DataContext.DeleteCusCommand}"
+                                                            CommandParameter="{Binding CusID,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                            BorderBrush="{x:Null}"
+                                                            BorderThickness="0"
+                                                            Background="#DC3545"
+                                                            Content="Delete"
+                                                            Padding="0"
+                                                            Foreground="White"
+                                                            FontSize="13"
+                                                            Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                                                            Width="80"
+                                                            Height="40" />
+                                                </Grid>
+                                            </materialDesign:TransitioningContent>
+                                        </StackPanel>
+                                    </materialDesign:Card>
+
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor,   
+                                            AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                     Value="True">
+                                            <Setter TargetName="Border"
+                                                    Property="Background"
+                                                    Value="#F9F9FA"></Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Sex}"
+                                                     Value="True">
+                                            <Setter TargetName="IsB"
+                                                    Property="IsChecked"
+                                                    Value="True"></Setter>
+                                            <Setter TargetName="IsG"
+                                                    Property="IsChecked"
+                                                    Value="False"></Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Sex}"
+                                                     Value="False">
+                                            <Setter TargetName="IsG"
+                                                    Property="IsChecked"
+                                                    Value="True"></Setter>
+                                            <Setter TargetName="IsB"
+                                                    Property="IsChecked"
+                                                    Value="False"></Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Kind}"
+                                                     Value="0">
+                                            <Setter TargetName="txtKind"
+                                                    Property="Text"
+                                                    Value="Bình Thường"></Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Kind}"
+                                                     Value="1">
+                                            <Setter TargetName="txtKind"
+                                                    Property="Text"
+                                                    Value="Thân Mật"></Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Kind}"
+                                                     Value="2">
+                                            <Setter TargetName="txtKind"
+                                                    Property="Text"
+                                                    Value="VIP"></Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor,   
+                                            AncestorType={x:Type ListViewItem}}, Path=IsMouseOver}"
+                                                     Value="True">
+                                            <Setter TargetName="Border"
+                                                    Property="Background"
+                                                    Value="#F9F9FA"></Setter>
+                                            <Setter TargetName="SlideBtn"
+                                                    Property="Visibility"
+                                                    Value="Visible"></Setter>
+
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                        </ListView>
+
+
+                    </Grid>
+
+
+
+
+
+                </Grid>
+
+                <Grid Height="50"></Grid>
+
+            </StackPanel>
+            
+            
+        </Grid>
+
+    </Grid>
+    </materialDesign:DialogHost>
+</UserControl>
+

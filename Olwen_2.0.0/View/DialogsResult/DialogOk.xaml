@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="Olwen_2._0._0.View.DialogsResult.DialogOk"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Olwen_2._0._0.View.DialogsResult"
+             mc:Ignorable="d"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+           >
+    <Grid>
+        <md:TransitioningContent>
+            <md:TransitioningContent.OpeningEffects>
+                <md:TransitionEffect Kind="ExpandIn"
+                                                 Duration="0:0:0.6" />
+            </md:TransitioningContent.OpeningEffects>
+            <Border CornerRadius="6"
+                    Background="White"
+                    BorderThickness="1"
+                    Width="400"
+                    Height="210"
+                    BorderBrush="#FFB6B6B6">
+
+                <Grid Margin="5">
+
+                    <md:TransitioningContent>
+                        <md:TransitioningContent.OpeningEffects>
+                            <md:TransitionEffect Kind="ExpandIn"
+                                                             Duration="0:0:1.2" />
+                            <md:TransitionEffect Kind="SlideInFromTop"
+                                                             Duration="0:0:0.7" />
+                        </md:TransitioningContent.OpeningEffects>
+                        <md:PackIcon Margin="0 5 0 0"
+                                                 x:Name="Icon"
+                                                 Kind="About"
+                                                 VerticalAlignment="Top"
+                                                 HorizontalAlignment="Center"
+                                                 Height="75"
+                                                 Width="75"
+                                     Foreground="#FFF6E82A">
+                        </md:PackIcon>
+                    </md:TransitioningContent>
+                    <TextBlock Text="{Binding Content,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                               x:Name="Content"
+                               Foreground="#595959"
+                               FontSize="23"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               TextWrapping="Wrap" />
+                    <TextBlock Text="{Binding Tilte,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                               x:Name="Titlemess"
+                               Foreground="#595959"
+                               FontSize="16"
+                               Margin="0 50 0 0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               TextWrapping="Wrap" />
+                    <Button
+                            Command="{x:Static md:DialogHost.CloseDialogCommand}"
+                            Style="{DynamicResource MaterialDesignFlatButton}"
+                            Width="130"
+                            Height="40"
+                            Foreground="White"
+                            Margin="0 0 20 20"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom">
+                        <Button.Background>
+                            <LinearGradientBrush>
+                                <GradientStop Color="#6BCE98"
+                                              Offset="0" />
+                                <GradientStop Color="#13C996"
+                                              Offset="1" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        OK
+                    </Button>
+                </Grid>
+            </Border>
+
+        </md:TransitioningContent>
+
+
+    </Grid>
+</UserControl>
